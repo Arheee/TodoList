@@ -16,6 +16,12 @@ namespace TodoList.Controllers
         [Route("xxxbloglalisteSooD@arkxxx")]
         public ActionResult Index(int page = 1, int pageSize = 10)
         {
+            var username = HttpContext.Session.GetString("Username");
+            if (string.IsNullOrEmpty(username)) 
+            { 
+                return RedirectToAction("Login", "Auth"); 
+            }
+
             var totalItems = _context.Todos.Count();
             //calcul le nombre total de pages avec Ceiling : arrondit un nombre a l'entier supp le plus proche
             var totalPages = (int)Math.Ceiling(totalItems/ (double)pageSize);
@@ -35,7 +41,7 @@ namespace TodoList.Controllers
             };
 
             
-
+            ViewBag.Username = username; 
             return View(oForm);
         }
 

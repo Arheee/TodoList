@@ -1,5 +1,8 @@
 ﻿
 @model TodoListViewModel
+@{
+    Layout = null;
+}
 <style>
 
     .todo-table {
@@ -65,8 +68,9 @@
 
 
 <div class="container mt-5">
+
     <h1 class="text-center" style="color: #ff66b2; font-family: 'Brush Script MT', cursive; font-size: 3rem;">
-        La Liste de choses à faire 🦄
+        La Liste de choses à faire pour @ViewBag.Username 🦄
     </h1>
     <a asp-action="Form" style="color: #ff66b2" class="btn btn-light mb-3">Ajouter une tâche</a>
     <table class="table todo-table">
@@ -113,6 +117,9 @@
             </li>
         </ul>
     </nav>
-
+    <footer>
+        <br />
+        <a href="/Auth/Logout">se déconnnecter</a>
+    </footer>
 
 </div>
