@@ -8,5 +8,5 @@ namespace TodoList.Models
         public TodoContext(DbContextOptions<TodoContext> options) : base(options) { }
 
         public DbSet<TodoItemModel> Todos { get; set; }
-    }
+    } 
 }
