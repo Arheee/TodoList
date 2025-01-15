@@ -4,6 +4,7 @@ using TodoList.Models;
 
 namespace TodoList.Controllers
 {
+    
     public class TodoItemController : Controller
     {
         private readonly TodoContext _context;
@@ -11,7 +12,8 @@ namespace TodoList.Controllers
         {
             _context = context;
         }
-    
+
+        [Route("xxxbloglalisteSooD@arkxxx")]
         public ActionResult Index()
         {
             var todos = _context.Todos.ToList();
@@ -28,6 +30,12 @@ namespace TodoList.Controllers
         [HttpPost] //ajouter une tache 
         public ActionResult Form(TodoItemModel oform)
         {
+            if (ModelState.IsValid)
+            {
+                _context.Todos.Add(oform);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return View(oform);
         }
 
@@ -35,7 +43,13 @@ namespace TodoList.Controllers
         //Supp une tache
         public ActionResult Delete(int id)
         {
-            return View();
+            var todo = _context.Todos.Find(id);
+            if (todo != null)
+            {
+                _context.Todos.Remove(todo);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
 

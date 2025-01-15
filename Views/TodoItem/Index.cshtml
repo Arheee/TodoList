@@ -1,36 +1,94 @@
 ﻿@model List<TodoList.Models.TodoItemModel>
+<style>
+
+    .todo-table {
+        background-color: #ffe6f0; /* Fond rose  */
+        border: 2px solid #ff99cc; /* Bordure rose vif */
+        border-radius: 10px; /* Coins arrondis */
+        box-shadow: 0 0 20px #ffccff; /* Effet lumineux féérique */
+    }
+
+        .todo-table th {
+            background-color: #ff99cc; /* Entête rose vif */
+            color: white; /* Texte blanc */
+            font-weight: bold; /* Texte en gras */
+            text-transform: uppercase; /* Majuscules */
+        }
+
+        .todo-table td {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .todo-table tr:nth-child(even) {
+            background-color: #ffe6f0; /* Ligne rose clair */
+        }
+
+        .todo-table tr:nth-child(odd) {
+            background-color: #ffffff; /* Ligne blanche */
+        }
+
+    /* Style pour les cases à cocher */
+    .checkbox-custom {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        border: 2px solid #ff99cc; /* Bordure rose vif */
+        border-radius: 5px; /* Coins arrondis */
+        box-shadow: 0 0 5px #ffccff; /* Effet lumineux */
+    }
+
+        .checkbox-custom:checked {
+            background-color: #ff99cc; /* Fond rose vif quand cochée */
+            border-color: #ff66b2; /* Bordure plus foncée */
+        }
+
+    /* Style pour les boutons */
+    .btn-delete {
+        background-color: #ff66b2; /* Rose vif */
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+        box-shadow: 0 5px #cc3399; /* Effet de bouton enfoncé */
+    }
+
+        .btn-delete:hover {
+            background-color: #ff3399; /* Rose encore plus vif  */
+            box-shadow: 0 8px #b30077; /* Ombre plus profonde */
+        }
+
+</style>
 
 
 <div class="container mt-5">
-    <h1 class="text-center">La Liste de chose à faire 💗</h1>
-    <a asp-action="Form" class="btn btn-success mb-3">Ajouter une tâche</a>
-    <table class="table table-bordered table-striped">
+    <h1 class="text-center" style="color: #ff66b2; font-family: 'Brush Script MT', cursive; font-size: 3rem;">
+        La Liste de choses à faire 🦄
+    </h1>
+    <a asp-action="Form" style="color: #ff66b2" class="btn btn-light mb-3">Ajouter une tâche</a>
+    <table class="table todo-table">
         <thead>
             <tr>
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Statut</th>
-                <th>Actions</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var todo in Model)
             {
                 <tr>
-                    <td>@todo.Title</td>
+                    <td style="color: #ff66b2; font-family: 'Brush Script MT' ;">@todo.Title</td>
+                    <td style="color: deepskyblue;">@todo.Description</td>
                     <td>
-                        @if (todo.IsCompleted)
-                        {
-                            <span class="text-success">Terminée</span>
-                        }
-                        else
-                        {
-                            <span class="text-warning">En cours</span>
-                        }
+                        <input type="checkbox" class="checkbox-custom" asp-action="ToggleComplete" asp-route-id="@todo.Id" 
+                        @(todo.IsCompleted ? "checked" : "") onchange="location.href='@Url.Action("ToggleComplete", "TodoItem", new { id = todo.Id })'" />
                     </td>
-                    <td>
-                        <a asp-action="ToggleComplete" asp-route-id="@todo.Id" class="btn btn-info btn-sm">Changer statut</a>
-                        <a asp-action="Delete" asp-route-id="@todo.Id" class="btn btn-danger btn-sm">Supprimer</a>
+                    <td class="text-center">
+                        <a asp-action="Delete" asp-route-id="@todo.Id" class="btn btn-light btn-sm">❌</a>
                     </td>
                 </tr>
             }

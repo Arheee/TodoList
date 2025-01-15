@@ -25,6 +25,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/xxxbloglalisteSooD@arkxxx");
+    return Task.CompletedTask;
+});
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=TodoItem}/{action=Index}/{id?}");

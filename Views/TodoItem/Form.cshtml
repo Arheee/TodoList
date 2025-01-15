@@ -1,2 +1,21 @@
-﻿@model List<TodoList.Models.TodoItemModel>
-<h1>Le Formulaire de tâche trop chou</h1>
+﻿@model TodoList.Models.TodoItemModel
+
+<div class="container mt-5">
+    <h1 class="text-center" style="color: #ff66b2; font-family: 'Brush Script MT', cursive; font-size: 3rem;">
+        🔹 Ajouter une tâche 🔹
+        </h1>
+    <form asp-action="Form" method="post" class="border p-4 shadow-sm bg-light rounded">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label" style="color: #ff66b2;">Titre</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label" style="color: #ff66b2;">Description</label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <button type="submit" style="color: lightyellow" class="btn btn-primary mb-3">Magie magie 💫</button>
+    </form>
+</div>
+
