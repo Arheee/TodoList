@@ -14,11 +14,29 @@ namespace TodoList.Controllers
         }
 
         [Route("xxxbloglalisteSooD@arkxxx")]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            var todos = _context.Todos.ToList();
+            var totalItems = _context.Todos.Count();
+            //calcul le nombre total de pages avec Ceiling : arrondit un nombre a l'entier supp le plus proche
+            var totalPages = (int)Math.Ceiling(totalItems/ (double)pageSize);
 
-            return View(todos);
+            var todos = _context.Todos
+                      .Skip((page - 1) * pageSize) 
+                      .Take(pageSize)  
+                      .ToList();
+
+            
+            var oForm = new TodoListViewModel
+            {
+                Todos = todos,
+                CurrentPage = page,
+                TotalPages = totalPages,
+                PageSize = pageSize
+            };
+
+            
+
+            return View(oForm);
         }
 
         [HttpGet] //formulaire
