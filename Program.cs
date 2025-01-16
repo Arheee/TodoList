@@ -44,14 +44,15 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseSession(); //active la session 
 
-app.MapGet("/", context =>
-{
-    context.Response.Redirect("/xxxbloglalisteSooD@arkxxx");
-    return Task.CompletedTask;
-});
+//app.MapGet("/", context =>
+//{
+//    context.Response.Redirect("/xxxbloglalisteSooD@arkxxx");
+//    return Task.CompletedTask;
+//});
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=TodoItem}/{action=Index}/{id?}");
+    pattern: "{controller=TodoItems}/{action=Index}/{id?}");
+
 
 app.Run();

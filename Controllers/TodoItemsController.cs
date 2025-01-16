@@ -5,16 +5,16 @@ using TodoList.Models;
 namespace TodoList.Controllers
 {
     
-    public class TodoItemController : Controller
+    public class TodoItemsController : Controller
     {
         private readonly TodoContext _context;
-        public TodoItemController(TodoContext context)
+        public TodoItemsController(TodoContext context)
         {
             _context = context;
         }
 
-        [Route("xxxbloglalisteSooD@arkxxx")]
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        //[Route("xxxbloglalisteSooD@arkxxx")]
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
             var username = HttpContext.Session.GetString("Username");
             if (string.IsNullOrEmpty(username)) 
