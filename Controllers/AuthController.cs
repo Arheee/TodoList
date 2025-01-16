@@ -32,6 +32,8 @@ namespace TodoList.Controllers
             if (user != null)
             {
                 HttpContext.Session.SetString("username", user.Username);
+                Console.WriteLine($"Connexion réussie : {HttpContext.Session.GetString("username")}");
+
                 return RedirectToAction("Index", "TodoItems");
                 //return RedirectToRoute("/Index");
             }

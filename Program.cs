@@ -40,9 +40,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthorization();
 app.UseSession(); //active la session 
+app.UseAuthorization();
+
 
 //app.MapGet("/", context =>
 //{

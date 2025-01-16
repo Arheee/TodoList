@@ -16,7 +16,7 @@ namespace TodoList.Controllers
         //[Route("xxxbloglalisteSooD@arkxxx")]
         public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            var username = HttpContext.Session.GetString("Username");
+            var username = HttpContext.Session.GetString("username");
             if (string.IsNullOrEmpty(username)) 
             { 
                 return RedirectToAction("Login", "Auth"); 
